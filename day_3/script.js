@@ -19,7 +19,24 @@ arrayOfRucksacks.forEach((rucksack, index) => {
   });
 });
 
-commonItems.forEach((letter) => {
+const arrayOfBadges = [];
+while (arrayOfRucksacks.length > 0) {
+  let arrayOfResults = [];
+  const [string1, string2, string3] = arrayOfRucksacks.splice(0, 3);
+  let myIndex;
+  string1.split('').forEach((letter, index) => {
+    myIndex = index;
+    if (
+      string2.split('').includes(letter) &&
+      string3.split('').includes(letter)
+    ) {
+      arrayOfResults.push(letter);
+    }
+  });
+  arrayOfBadges.push(arrayOfResults[0]);
+}
+
+arrayOfBadges.forEach((letter) => {
   if (letter !== letter.toUpperCase()) {
     sumOfPriorities += letters.indexOf(letter) + 1;
   } else if (letter === letter.toUpperCase()) {
@@ -27,7 +44,7 @@ commonItems.forEach((letter) => {
     sumOfPriorities += letters.indexOf(lower) + 27;
   }
 });
-console.log('sumOfPriorities: ', sumOfPriorities);
+console.log('Sum: ', sumOfPriorities);
 
 function onlySpaces(str) {
   return str.trim().length === 0;
