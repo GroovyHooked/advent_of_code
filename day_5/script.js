@@ -20,7 +20,7 @@ const procedure = data.match(sequencesRegex);
 procedure.forEach((sequence) => {
   const [howMany, from, to] = sequence.match(numberRegex);
   const elementsToMove = container[Number(from) - 1].splice(0, Number(howMany));
-  elementsToMove.forEach((letter) => container[Number(to) - 1].unshift(letter));
+  container[Number(to) - 1] = [...elementsToMove, ...container[Number(to) - 1]];
 });
 let sequenceToReturn = '';
 container.forEach((array) => {
